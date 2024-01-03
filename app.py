@@ -42,7 +42,7 @@ app.config['SECRET_KEY'] = '7d441f27d441f27567d441f2b6176a'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 print("Loading Pre-trained Model ...")
-model = load_model('/Users/hoaithuong/SchoolProjects/BigData/pneumonia-detection/bidl.h5')
+model = load_model('./model/bidl.h5')
 
 # def image_preprocessor(path):
 #     '''
@@ -108,9 +108,6 @@ def model_pred(image):
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
-
-
   
 class bacsi(db.Document):
     name = db.StringField()
