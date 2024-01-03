@@ -18,6 +18,11 @@ tutorial-env\Scripts\activate
 ### Installation
 
 > In app.py , config your Database name, and change name of class with your collection's name
+> ``` app.config['MONGODB_SETTINGS'] = {
+    'db': 'final',
+    'host': 'localhost',
+    'port': 27017} ```
+
 
 ```
 pip install -r require.txt
