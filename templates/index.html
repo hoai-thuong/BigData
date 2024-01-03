@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <title>Pneumonia Detection</title>
+  
+{% endblock %}
+{% block body %}
+<div class="container right-panel-active">
+    <div>
+        <form action="{{ url_for('upload_file')}}" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
+            <!-- Drag-and-drop or click-to-select area -->
+            <div class="container__overlay">
+                <h2 class="form__title">Patient Information</h2>
+                <div style="padding:20px">
+                    <input type="text" name="name" placeholder="Name" class="input" />
+                    <input type="text" name="age" placeholder="Age" class="input" />
+                    <select name="region" class="input" id = "city"> 
+                        <option value="" disabled selected>Select Province</option>
+                    </select>
+
+                </div>
+                
+                <a class="btn" href = "/statistics">Statistics</a>
+
+            </div>
+            <div class="container__form container--signin">
+                <div class="xray">
+                    <p class="title">Upload Xray</p>
+                    <div id="uploadArea" class="upload-area" onclick="chooseFile()">
+                        <img id="uploadImage" src="static/uploads/fileUpload.png" alt="background">
+                        <div id="imagePreview" class="image-preview"></div>
+                        <p id="dragText">Drag or Click to Choose Image</p>
+                    </div>
+        
+                    <!-- Hidden file input -->
+                    <input type="file" name="imageFile" id="imageFile" class="upload-class" style="display: none;" onchange="previewFile(this)">
+                    
+                    <!-- Image preview area -->
+        
+                    <button type="submit" class="button-class">Result</button>
+                </div>
+            </div>
+
+
+            
+        </form>
+
+    </div>
+          
+
+
+  
+</div>
+
+
+
+    <script>
+        function chooseFile() {
+            document.getElementById('imageFile').click();
+        }
+
+        function previewFile(input) {
+            const file = input.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    document.getElementById('imagePreview').innerHTML = `<img src="${e.target.result}" alt="selected image" class="image-class">`;
+
+                    // Hide the uploadImage and dragText when imagePreview is populated
+                    document.getElementById('uploadImage').style.display = 'none';
+                    document.getElementById('dragText').style.display = 'none';
+                };
+
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function validateForm() {
+            // Add any additional form validation logic here if needed
+            return true;
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <script>
+        var citis = document.getElementById("city");
+
+        var Parameter = {
+            url: "https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json", 
+            method: "GET", 
+            responseType: "application/json", 
+        };
+        var promise = axios(Parameter);
+        promise.then(function (result) {
+            renderCity(result.data);
+        });
+
+        function renderCity(data) {
+            for (const x of data) {
+                citis.options[citis.options.length] = new Option(x.Name, x.Name); 
+            }
+}
+
+    </script>
+{% endblock %}

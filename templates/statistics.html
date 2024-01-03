@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="containerr">
+    <div style="text-align: right !important">
+        <a  class="btn" href = "/">HOME</a>
+        </div>
+    <h2 class="form__titlee">Pneumonia Statistics</h2>
+
+    
+    <div class="charts-container">
+        <!-- Display the grouped bar chart for Pneumonia cases by Region -->
+        <div class="chart-container">
+            {{ region_plot_html | safe }}
+            <p class="chart-title">Pneumonia Cases by Region</p>
+        </div>
+        
+        <!-- Display the grouped bar chart for Pneumonia cases by Age Group -->
+        <div class="chart-container">
+            {{ age_plot_html | safe }}
+            <p class="chart-title">Pneumonia Cases by Age Group</p>
+        </div>
+        
+        <!-- Display the pie chart for the percentage of Pneumonia and Normal cases -->
+        <!-- <div class="chart-container">
+            {{ pie_chart_html | safe }}
+            <p class="chart-title">Percentage of Pneumonia and Normal Cases</p>
+        </div> -->
+    </div>
+            <div class="chart-container">
+            {{ pie_chart_html | safe }}
+            <p class="chart-title">Percentage of Pneumonia and Normal Cases</p>
+        </div>
+</div>
+
+{% endblock %}
