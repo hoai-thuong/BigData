@@ -20,12 +20,12 @@ tutorial-env\Scripts\activate
 > In app.py , config your Database name, and change name of class with your collection's name
  ``` 
  app.config['MONGODB_SETTINGS'] = {
-    'db': 'final', `change to your database name`
+    'db': 'your_new_database_name', 
     'host': 'localhost',
     'port': 27017} 
 ```
 ```
-class bacsi(db.Document):  `change to your collection name`
+class bacsi(db.Document):  change bacsi = "your_collection_name"
     name = db.StringField()
     age = db.StringField()
     region = db.StringField()
