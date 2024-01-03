@@ -1,4 +1,7 @@
+# this file for fake DB
+
 from datetime import datetime
+
 from faker import Faker
 import random
 from pymongo import MongoClient
