@@ -1,6 +1,6 @@
 ## Getting Started
 ### Using
-`python :  Python 3.11.1 `.
+`python :  Python 3.11.1 `
 
 `Database: MongoDB`
 ### Create virtual enviroment (recommend)
